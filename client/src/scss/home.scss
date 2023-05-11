@@ -1,0 +1,77 @@
+@import "config";
+@import "utilities";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: $light-gray-color;
+}
+
+// Home
+
+#home {
+    display: grid;
+    grid-template-rows: 1fr auto-fill;
+    gap: 2rem;
+
+    #add-tasks > div.container,
+    #view-tasks > div.container {
+        box-shadow: 2px 2px 6px $dark-gray-color;
+        border-radius: 10px;    
+    }
+    
+    %card-shard {
+        background-color: $light-color;
+        border: none;
+    }
+    
+    .card {        
+        &-add {
+            @extend %card-shard;
+            display: grid;
+            grid-template-rows: repeat(3, 0.6fr);
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+
+            h2 {
+                grid-column: 1 /span 3;
+            }
+
+            & > div {
+                grid-column: 1 / span 3;
+            }
+
+            input {
+                border: none;
+                background: $light-color;
+                padding: 0.5rem;
+                grid-column: 1 / span 3;
+                font-size: 20px;
+    
+                &:focus {
+                    outline: none;
+                }
+            }
+        }
+        
+        &-view{
+            @extend %card-shard;
+            display: grid;
+            grid-template-rows: repeat(Auto-Fit, minmax(50px, 1fr));
+            gap: 0.5rem;
+            position: relative;
+
+            #btn-clear {
+                position: absolute;
+                top: 3px;
+                right: 10px;
+            }
+        }
+
+    }
+}
